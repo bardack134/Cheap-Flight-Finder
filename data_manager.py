@@ -30,25 +30,28 @@ class DataManager():
         
         
         #imprimimos la informacion  obtenida la google sheet
-        pprint(f'Information obtained from the Google Sheet with the get method {self.json_response}')
+        pprint('Information obtained from the Google Sheet with the get method ')
+        print(self.json_response)
         print()
+        
         
         #retornamos los datos obtenidos del metodo get()
         return self.json_response
         
     
     #actualizando el valor de la columna IATA Code en nuestra google sheet
-    def update_iata_code(self):
+    def update_iata_code(self, iata_code_data):
         
         #ciclo for que recorre nuestros datos guardados en json_response, en la clave 'prices'
         for item in self.json_response['prices']:
             
             #guardamos nuevo valor en la clave  'IATA code', columna de nuestro google sheet
-            item['iataCode']='TESTING'
+            item['iataCode']=iata_code_data
            
         print()
         pprint(self.json_response)
         print()
+        
         
     #Metodo put para enviar y almacenar informacion　en nuestra base de datos 'google sheet'
     def put_method(self):
@@ -79,23 +82,3 @@ class DataManager():
             print()
         
         
-        
-        
-        
-#creamos obteto de nuestra nueva clase
-datamanager=DataManager()
-
-
-#llamamos almetodo 'get_method' guardamos los datos obtenidos con get requests en una variable
-sheet_data=datamanager.get_method()['prices']
-pprint(f'proibando sheet data  {sheet_data}')
-print()
-
-
-#aptualizamos los datos guardados y almacenados en json_response con el nuevo metodo 'update_iata_code'
-datamanager.update_iata_code()
-# print(f'probando sheet update{sheet_update}')
-
-
-#metodo put, para enviar los datos actualizados a nuestro google sheet
-datamanager.put_method()
