@@ -42,14 +42,19 @@ class DataManager():
     #actualizando el valor de la columna IATA Code en nuestra google sheet
     def update_iata_code(self, iata_code_data):
         
+        i=0 #iata_code_data es una lista, por lo tanto debemos recorrer, cada elemento de nuestra lista empezando por la posicion '0'
+        
+        
         #ciclo for que recorre nuestros datos guardados en json_response, en la clave 'prices'
         for item in self.json_response['prices']:
             
             #guardamos nuevo valor en la clave  'IATA code', columna de nuestro google sheet
-            item['iataCode']=iata_code_data
-           
+            item['iataCode']=iata_code_data[i]
+
+            i=i+1
            
         print()
+        print('imprimiendo el nuevo json response con los datos "IATA code" actualizados')
         pprint(self.json_response)
         print()
         
@@ -57,7 +62,7 @@ class DataManager():
     #Metodo put para enviar y almacenar informacion　en nuestra base de datos 'google sheet'
     def put_method(self):
         
-        #ciclo for que recorre nuestros datos guardados en json_response, en la clave 'prices'
+        #ciclo for que recorre nuestros datos guardados en json_response, en la clave 'prices', que ya estan acualizados
         for i in range(2, len(self.json_response['prices'])+2):#en nuestro google sheet los datos empiezan desde la fila "2"
             
             

@@ -21,58 +21,68 @@ class FlightData:#ESTA CLASE ES RESPONSABLE DE ESTRUCTURAR LOS DATOS DEL VUELO.
     # Definimos un método para obtener el código IATA para una ciudad dada
     def get_destination_code(self, sheet_data):
         
-        response_list=[]#lista donde se guardaran todos los valores del response 
+        code_list=[]#lista donde se guardaran todos los valores del response 
         
      
         #NOTE* la informacion en nuestro google sheet, esta guarda en la variable 'sheet_data' (ver main.py file)
         
         
+        #recorremos cada uno de los datos guardados en el google sheet
         
-        #parametros que recibe deacuwerdo a la documentacion
-        parameters={
-            
-            #aca debemos incluir los nombres de las ciudades de nuestro documento en google docs
-            'term':'Medellin',
-            'location_types':'city',
-        }
+        for row in sheet_data:
+            #parametros que recibe deacuwerdo a la documentacion
+            parameters={
+                
+                #aca debemos incluir los nombres de las ciudades de nuestro documento en google docs
+                'term':row['city'],
+                'location_types':'city',
+            }
         
         
         #NOTE: mas informacion ver https://tequila.kiwi.com/portal/docs/tequila_api/locations_api, respecto a los parametros que recibe la api
         
         
-        headers={ #apikey en headers, para ocultar nuestra informacion
-            'apikey':self.api_key,
-            
-        }
-        
-        
-        #get requests
-        response = requests.get(url=self.url, headers=headers, params=parameters) 
-        
-        
-        #si es correcta la peticion agregamos la respuesta a la lista
-        if response.status_code == 200: 
-            response_list.append(response.json())
+            headers={ #apikey en headers, para ocultar nuestra informacion
+                'apikey':self.api_key,
+                
+            }
         
             
-            #imprimimos respuesta http
-            pprint("response status code: ") 
-            print(response.status_code)
-            print()
+            #get requests
+            response = requests.get(url=self.url, headers=headers, params=parameters) 
+        
             
-            
-            pprint("informacion entregada por la clase FlightData() obtenida de la API Tequila")
-            pprint(response.json())
-            print()
+            #si es correcta la peticion agregamos la respuesta a la lista
+            if response.status_code == 200: 
+           
+                
+                #imprimimos respuesta http
+                pprint("response status code: ") 
+                print(response.status_code)
+                print()
+                
+                
+                pprint("informacion entregada por la clase FlightData() obtenida de la API Tequila")
+                # pprint(response.json())
+                print()
 
-            
-            #revisando la informacion en la respuesta response, encontramos que el codigo esta guardado en la clave 'code'
-            code=response.json()['locations'][0]['code']
-            print(code)
-        # code='TESTING 2'
+                
+                #revisando la informacion en la respuesta 'response', encontramos que el codigo de la ciudad esta guardado en la clave 'code'
+                code=response.json()['locations'][0]['code']
+                print(code)
+                print()
+                
+                
+                code_list.append(code)
+                
+                
+        print('lista de codigos')
+        print(code_list)
+        print()
         
         
-        # return code
+        
+        return code_list
     
 
 

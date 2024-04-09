@@ -2,7 +2,7 @@
 from data_manager import *
 from pprint import pprint
 
-from flight_data import FlightData
+from flight_data import *
 
 
 #TODO:VAMOS A CHEQUIAR SI NUESTRA BASE DE DATOS　"GOOGLE SHEET" TIENE EN LA COLUMNA "IATACODE" DATOS GUARDADOS
@@ -29,14 +29,32 @@ for item in sheet_data:
         flight_data=FlightData()
         
         
-        #metodo de nuestra clase que se encagar de buscar el codigo de la ciudad
+        #metodo de nuestra clase que se encagar de buscar el codigo de la ciudad, le pasamos toda informacion en sheet data
+        #y el metodo se encargara de procesar la informacion
         iata_code_data=flight_data.get_destination_code(sheet_data)
+
+
+        print('imprimiendo iata_code_data')
+        print(iata_code_data)
         
         
-        # print(iata_code_data)
+        #NOTE: iata_code es una lista de codigos de ciudad, ver flight_data.py
+        
+        
         #aptualizamos los datos guardados en 'json_response' con el  metodo 'update_iata_code' de la clase DataManager()
-        # datamanager.update_iata_code(iata_code_data)
+        datamanager.update_iata_code(iata_code_data)
         
         
-        # #metodo put, para enviar los datos actualizados a nuestro google sheet
-        # datamanager.put_method()
+        #meotod que envia los datos guardados en 'json_response' al google docs
+        datamanager.put_method()
+        
+        
+        
+    #para que no se esta repitiendo el proceso una y otra vez para cada item en el sheetdata, es decir en el google docs    
+    break    
+       
+
+    
+    
+       
+    
