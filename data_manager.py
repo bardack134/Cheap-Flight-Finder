@@ -48,6 +48,7 @@ class DataManager():
             #guardamos nuevo valor en la clave  'IATA code', columna de nuestro google sheet
             item['iataCode']=iata_code_data
            
+           
         print()
         pprint(self.json_response)
         print()
