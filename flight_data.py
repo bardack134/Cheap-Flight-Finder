@@ -7,7 +7,7 @@ import requests
 # Este código ayuda a identificar aeropuertos y áreas metropolitanas.
 
         
-class FlightData:#ESTA CLASE ES RESPONSABLE DE ESTRUCTURAR LOS DATOS DEL VUELO.
+class FlightData:#ESTA CLASE ES RESPONSABLE DE ESTRUCTURAR LOS DATOS DEL VUELO. Y OBTENER EL CODIGO DE CADA CIUDAD
     
 #TODO: PASAR LOS NOMBRES DE LA CIUDADES EN EL GOOGLE SHEET A ESTA CLASE
 
