@@ -2,6 +2,9 @@ from datetime import datetime, timedelta
 from pprint import pprint
 import requests
 from constants import *
+from notification_manager import NotificationManager
+
+
 
 
 class FlightSearch:
@@ -86,16 +89,11 @@ class FlightSearch:
         # 'return_date':data["route"][1]["local_departure"].split("T")[0]
         }
 
+
         print()
         pprint(data_dict)
         print(f"the destination city is {data_dict['destination_city']} and the price is {data_dict['price']}")
         print()
         
         
-        
-
-
-#datos obtenidos de loa api
-
-
-
+        return data_dict

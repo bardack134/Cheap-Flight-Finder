@@ -3,6 +3,7 @@ import requests
 
 from constants import *
 from flight_search import FlightSearch
+from notification_manager import NotificationManager
 
 
 class DataManager():
@@ -55,16 +56,11 @@ class DataManager():
             
             print(i+2)
             print(iata_code_data[i]  )
-            #incrustando las ciudades (codigo IATA de la city) en la clase FlightSearch, que se encarga de buscar la info de los vuelos
-            flight_search=FlightSearch()
 
 
-            flight_search.check_flights(search_city=iata_code_data[i] )
-            
             i=i+1
            
-            
-            
+    
         print()
         print('imprimiendo el nuevo json response con los datos "IATA code" actualizados')
         pprint(self.json_response)

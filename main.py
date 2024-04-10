@@ -55,9 +55,40 @@ for item in sheet_data:
         
     #para que no se esta repitiendo el proceso una y otra vez para cada item en el sheetdata, es decir en el google docs    
     break    
-       
+
+i=0 
+
+#creando objeto de la clase FlightData, que devolvera el  codigo IATA code de las ciudades
+flight_data=FlightData()
+
+
+#incrustando las ciudades (codigo IATA de la city) en la clase FlightSearch, que se encarga de buscar la info de los vuelos
+flight_search=FlightSearch()
 
     
+
+#metodo de nuestra clase que se encagar de buscar el codigo de la ciudad, le pasamos toda informacion en sheet data
+#y el metodo se encargara de procesar la informacion
+iata_code_data=flight_data.get_destination_code(sheet_data)
+
+
+#esta clase se encarga de la estrucutra para mandar los msj al celular 
+notification_manager = NotificationManager()
+
+
+#sheet data es una lista de diccionarios
+for row in sheet_data:
+
+
+    flight=flight_search.check_flights(search_city=iata_code_data[i] )
+
+   
+    #comparando el precio minimo definido en el google docs con el preci que nos de vuelve nuestra api
+    if flight['price'] < row['lowestPrice']:
+        
+        print('probando, yes el valor es menor para bogota')
     
-       
+        notification_manager.send_sms(message=f"Low price alert! Only £{flight['price'] } to fly from {flight['origin_city'] }-{flight['origin_airport']} to {flight['destination_city']}-{flight['destination_airport']}, from {flight['out_date']}")
+
+    i=i+1 
     
