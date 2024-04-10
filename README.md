@@ -15,8 +15,8 @@ The Cheap-Flight-Finder is a tool that leverages various APIs to find the most a
 - **Google Sheets:** Used as a database to store and retrieve data.
 - **Requests:** A Python module used for making HTTP requests to APIs.
 - **Sheety API:** This tool enables communication with Google Sheets, allowing us to read, write, and manage data in Google Sheets. It's a valuable tool for automating tasks and managing data.
-- **Twilio SMS API:** Used to send a notification to our cell phone when a flight discount is found. More information can be found at Twilio's official documentation.
-- **Tequila API:** Used to search for flight information such as prices, departure dates, departure airports, arrival cities and airports, and IATA airport codes. More information can be found at Tequila API's official website.
+- **Twilio SMS API:** Used to send a notification to our cell phone when a flight discount is found. More information can be found at https://www.twilio.com/docs/sms.
+- **Tequila API:** Used to search for flight information such as prices, departure dates, departure airports, arrival cities and airports, and IATA airport codes. More information can be found at https://tequila-api.kiwi.com.
 
 ## Screenshots
 ![google_sheet_img](https://github.com/bardack134/Cheap-Flight-Finder/assets/142977989/8a772eb2-e93d-4801-b5ee-9fbedccf08ae)
