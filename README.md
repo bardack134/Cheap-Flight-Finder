@@ -1,7 +1,9 @@
 # Cheap-Flight-Finder
 Using a combination of different APIs to create a cheap flight finder.
 
+
 **Description**
+
 We use Google Docs Sheet as a database. In this document, we save the names of the cities we are interested in traveling to and for which we will search for flight tickets. It also contains minimum ticket prices that we have set for each city. Using Tequila API, we get the ‘IATA location identifier’, which we will use again in Tequila API, to search for flight information within the next 6 months. The cheapest one found in that 6-month period, if the ticket price according to the API, is less than or equal to the price we have set in our ‘Google Sheet’ database, we automatically send a notification to our cell phone with the information of the flight found. For example, ‘ent from your Twilio trial account - Low price alert! Only £64831 to fly from Sapporo-CTS to Bogotá-NRT, from 2024-05-14’
 
 
