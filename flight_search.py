@@ -17,13 +17,13 @@ class FlightSearch:
         
 
     #funcion que buscara informacion acerca de los vuelos a cada una de nuestras ciudades en el google docs
-    def check_flights(self):
+    def check_flights(self, search_city):
         
         tomorrow = datetime.now() + timedelta(days=1)
         
         
         #buscaremos solo vuelos de ida
-        # six_month_from_today = datetime.now() + timedelta(days=(6 * 30))
+        six_month_from_today = datetime.now() + timedelta(days=(6 * 30))
 
 
         #pasamos en el header nuestro apikey para ocultar la info
@@ -33,11 +33,11 @@ class FlightSearch:
         #NOTE:informacion que recibe la api, deacuerdo a la documentacion 'https://tequila.kiwi.com/portal/docs/tequila_api/search_api'
         query = {
             
-            "fly_from": 'SPK',
-            "fly_to": 'BOG',
+            "fly_from": MY_CITY,
+            "fly_to": search_city,
             "date_from": tomorrow.strftime("%d/%m/%Y"),
             #buscaremos solo vuelos de ida
-            # "date_to": six_month_from_today.strftime("%d/%m/%Y"),  
+            "date_to": six_month_from_today.strftime("%d/%m/%Y"),  
             # FROM API_DATA If you are searching for a one-way flight, omit 'return_to' and 'return_from' or 'nights_in_dst_from' and 
             # "nights_in_dst_from": 7,
             # "nights_in_dst_to": 28,
@@ -73,7 +73,7 @@ class FlightSearch:
         #mirando el json response nos damos cuenta que los datos estan guardados en la clave 'data'
         data = response.json()["data"][0]
         
-        pprint(data)
+        # pprint(data)
         
         # guardo los datos obtenidos de la api en un diccionario
         data_dict={
@@ -86,13 +86,13 @@ class FlightSearch:
         # 'return_date':data["route"][1]["local_departure"].split("T")[0]
         }
 
-        
+        print()
         pprint(data_dict)
+        print(f"the destination city is {data_dict['destination_city']} and the price is {data_dict['price']}")
+        print()
         
         
-flight_search=FlightSearch()
-
-flight_search.check_flights()
+        
 
 
 #datos obtenidos de loa api

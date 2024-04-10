@@ -2,6 +2,7 @@ from pprint import pprint
 import requests
 
 from constants import *
+from flight_search import FlightSearch
 
 
 class DataManager():
@@ -51,8 +52,19 @@ class DataManager():
             #guardamos nuevo valor en la clave  'IATA code', columna de nuestro google sheet
             item['iataCode']=iata_code_data[i]
 
+            
+            print(i+2)
+            print(iata_code_data[i]  )
+            #incrustando las ciudades (codigo IATA de la city) en la clase FlightSearch, que se encarga de buscar la info de los vuelos
+            flight_search=FlightSearch()
+
+
+            flight_search.check_flights(search_city=iata_code_data[i] )
+            
             i=i+1
            
+            
+            
         print()
         print('imprimiendo el nuevo json response con los datos "IATA code" actualizados')
         pprint(self.json_response)
@@ -88,3 +100,14 @@ class DataManager():
             print()
         
         
+        
+#creamos obteto de nuestra nueva clase, que administra el google sheet
+datamanager=DataManager()
+
+
+#llamamos almetodo 'get_method' guardamos los datos obtenidos con get requests en una variable
+sheet_data=datamanager.get_method()
+pprint(f'probando sheet data  ')
+pprint(sheet_data)
+print()
+
